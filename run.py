@@ -20,10 +20,12 @@ def getSleepTime(): # work out how many seconds to wait until next hour or half 
     return ((tmm*60) + scs)
 
 def exe_script(): # executes the scrapy script, as a seperate process
-    print str(getSleepTime())+" seconds to wait."
-    time.sleep(getSleepTime())
+    while True:
         
-    os.system("scrapy crawl metservice -s LOG_ENABLED=0")    
+        print str(getSleepTime())+" seconds to wait."
+        time.sleep(getSleepTime())
+        
+        os.system("scrapy crawl metservice -s LOG_ENABLED=0")    
     
 if __name__ == '__main__':
     p = multiprocessing.Process(target=exe_script)
